@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     runGame("addition");
+    runGame("subtract");
 });
 
 /**
@@ -37,6 +38,11 @@ function runGame(gameType) {
 
         // if gthe gameType is addition, then display the Addition Question, otherwise alert & abort
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+
+        // if gthe gameType is substraction, then display the Substruction Question, otherwise alert & abort
+        displaySubtractQuestion(num1, num2);
+
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -79,10 +85,14 @@ function calculateCorrectAnswer() {
     // retun Array - 2 values - 1st a Number/Answer, 2nd - "addition" to continue playing
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "substraction"];
+        
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
+     
 }
 
 /**
@@ -109,8 +119,10 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operator').textContent = "+";
 }
 
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "-";
 }
 
 function displayMultiplyQuestion() {
