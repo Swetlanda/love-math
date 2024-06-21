@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     runGame("addition");
     runGame("subtract");
+    runGame("multiply");
 });
 
 /**
@@ -42,6 +43,10 @@ function runGame(gameType) {
 
         // if gthe gameType is substraction, then display the Substruction Question, otherwise alert & abort
         displaySubtractQuestion(num1, num2);
+    
+    } else if (gameType === "multiply") {
+        // if gthe gameType is multiply, then display the Multiply Question, otherwise alert & abort
+        displayMultiplyQuestion(num1, num2);
 
     } else {
         alert(`Unknown game type: ${gameType}`);
@@ -85,8 +90,12 @@ function calculateCorrectAnswer() {
     // retun Array - 2 values - 1st a Number/Answer, 2nd - "addition" to continue playing
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+
     } else if (operator === "-") {
         return [operand1 - operand2, "substraction"];
+
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"]
         
     } else {
         alert(`Unimplemented operator ${operator}`);
@@ -120,11 +129,13 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 function displaySubtractQuestion(operand1, operand2) {
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
 }
 
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
 }
